@@ -14,7 +14,7 @@
     "start": "next start",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "db:seed": "npx ts-node prisma/seed.ts",
+    "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio"
   },
   "dependencies": {
@@ -87,6 +87,6 @@
     "typescript": "^5"
   },
   "prisma": {
-    "seed": "npx tsx prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   }
 }
