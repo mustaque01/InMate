@@ -6,7 +6,7 @@ import { Building2, Users, Bed, Wifi, Car, Utensils } from "lucide-react"
 
 export default function StudentRoomPage() {
   return (
-    <ProtectedRoute requiredRole="student">
+    <ProtectedRoute requiredRole="STUDENT">
       <StudentLayout>
         <div className="space-y-6">
           <div>

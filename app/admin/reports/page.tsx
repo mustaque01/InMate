@@ -5,7 +5,7 @@ import { ReportsList } from "@/components/admin/reports-list"
 
 export default function ReportsPage() {
   return (
-    <ProtectedRoute requiredRole="admin">
+    <ProtectedRoute requiredRole="ADMIN">
       <AdminLayout>
         <div className="space-y-6">
           <div>

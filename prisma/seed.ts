@@ -15,8 +15,7 @@ async function main() {
     create: {
       email: 'admin@hostel.com',
       password: adminPassword,
-      firstName: 'Admin',
-      lastName: 'User',
+      name: 'Admin User',
       phone: '+1234567890',
       role: 'ADMIN',
     },
@@ -31,8 +30,7 @@ async function main() {
     create: {
       email: 'john.doe@student.com',
       password: studentPassword,
-      firstName: 'John',
-      lastName: 'Doe',
+      name: 'John Doe',
       phone: '+1234567891',
       role: 'STUDENT',
     },

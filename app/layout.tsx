@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "InMate - Hostel Management System",
   description: "Complete hostel management solution for administrators and students",
   keywords: ["hostel", "management", "student", "accommodation", "booking", "payment"],
-  authors: [{ name: "MD MUSTAK", email: "mustakarman560@gmail.com" }],
+  authors: [{ name: "MD MUSTAK" }],
   viewport: "width=device-width, initial-scale=1",
 }
 

@@ -4,7 +4,7 @@ import { AdminProfileForm } from "@/components/admin/admin-profile-form"
 
 export default function AdminProfilePage() {
   return (
-    <ProtectedRoute requiredRole="admin">
+    <ProtectedRoute requiredRole="ADMIN">
       <AdminLayout>
         <div className="space-y-6">
           <div>

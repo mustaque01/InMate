@@ -6,7 +6,7 @@ import { Building2, CreditCard, Bell } from "lucide-react"
 
 export default function StudentDashboard() {
   return (
-    <ProtectedRoute requiredRole="student">
+    <ProtectedRoute requiredRole="STUDENT">
       <StudentLayout>
         <div className="space-y-6">
           <div>

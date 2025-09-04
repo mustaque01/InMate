@@ -8,7 +8,7 @@ import Link from "next/link"
 
 export default function BookingsPage() {
   return (
-    <ProtectedRoute requiredRole="admin">
+    <ProtectedRoute requiredRole="ADMIN">
       <AdminLayout>
         <div className="space-y-6">
           <div className="flex items-center justify-between">

@@ -7,7 +7,7 @@ import { CreditCard, Calendar, CheckCircle, AlertCircle, Download } from "lucide
 
 export default function StudentRentPage() {
   return (
-    <ProtectedRoute requiredRole="student">
+    <ProtectedRoute requiredRole="STUDENT">
       <StudentLayout>
         <div className="space-y-6">
           <div>

@@ -35,7 +35,7 @@ function isRateLimited(ip: string): boolean {
 
 export function middleware(request: NextRequest) {
   // Get client IP
-  const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? 'unknown'
+  const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? 'unknown'
   
   // Temporarily disable rate limiting for debugging
   console.log('Middleware: Processing request:', request.nextUrl.pathname)

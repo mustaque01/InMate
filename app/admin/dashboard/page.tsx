@@ -6,7 +6,7 @@ import { RentAlerts } from "@/components/admin/rent-alerts"
 
 export default function AdminDashboard() {
   return (
-    <ProtectedRoute requiredRole="admin">
+    <ProtectedRoute requiredRole="ADMIN">
       <AdminLayout>
         <div className="space-y-6">
           <div>

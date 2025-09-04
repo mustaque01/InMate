@@ -4,7 +4,7 @@ import { StudentProfileForm } from "@/components/admin/student-profile-form"
 
 export default function StudentProfilePage() {
   return (
-    <ProtectedRoute requiredRole="student">
+    <ProtectedRoute requiredRole="STUDENT">
       <StudentLayout>
         <div className="space-y-6">
           <div>

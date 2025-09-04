@@ -201,7 +201,7 @@ export function RentCollectionForm() {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
-                  <Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus />
+                  <Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} required />
                 </PopoverContent>
               </Popover>
             </div>
@@ -238,7 +238,7 @@ export function RentCollectionForm() {
 
             {selectedStudent && selectedStudent.lateFee > 0 && (
               <div className="flex items-center space-x-2">
-                <Checkbox id="lateFee" checked={includeLateFee} onCheckedChange={setIncludeLateFee} />
+                <Checkbox id="lateFee" checked={includeLateFee} onCheckedChange={(checked) => setIncludeLateFee(checked === true)} />
                 <Label htmlFor="lateFee" className="text-sm">
                   Include late fee of ₹{selectedStudent.lateFee}
                 </Label>
@@ -314,7 +314,7 @@ export function RentCollectionForm() {
 
             <div className="mt-4 pt-4 border-t">
               <div className="flex items-center space-x-2">
-                <Checkbox id="generateReceipt" checked={generateReceipt} onCheckedChange={setGenerateReceipt} />
+                <Checkbox id="generateReceipt" checked={generateReceipt} onCheckedChange={(checked) => setGenerateReceipt(checked === true)} />
                 <Label htmlFor="generateReceipt" className="text-sm">
                   Generate and download PDF receipt
                 </Label>

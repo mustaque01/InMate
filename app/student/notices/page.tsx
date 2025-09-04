@@ -6,7 +6,7 @@ import { Bell, AlertTriangle, Info, CheckCircle } from "lucide-react"
 
 export default function StudentNoticesPage() {
   return (
-    <ProtectedRoute requiredRole="student">
+    <ProtectedRoute requiredRole="STUDENT">
       <StudentLayout>
         <div className="space-y-6">
           <div>
