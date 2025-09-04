@@ -1,0 +1,187 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  password    String
+  name        String
+  role        Role     @default(STUDENT)
+  phone       String?
+  
+  // Student-specific fields
+  studentId   String?  @unique
+  roomNumber  String?
+  course      String?
+  year        Int?
+  guardianName     String?
+  guardianPhone    String?
+  address          String?
+  emergencyContact String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  bookings    Booking[]
+  payments    Payment[]
+  notices     Notice[]  @relation("NoticeRecipients")
+  createdNotices Notice[] @relation("NoticeCreator")
+
+  @@map("users")
+}
+
+model Room {
+  id              String    @id @default(cuid())
+  roomNumber      String    @unique
+  type            RoomType  @default(SINGLE)
+  capacity        Int       @default(1)
+  currentOccupancy Int      @default(0)
+  floor           Int
+  block           String
+  monthlyRent     Float
+  amenities       String?   // JSON string for amenities list
+  status          RoomStatus @default(AVAILABLE)
+  description     String?
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Relations
+  bookings        Booking[]
+
+  @@map("rooms")
+}
+
+model Booking {
+  id              String        @id @default(cuid())
+  userId          String
+  roomId          String
+  startDate       DateTime
+  endDate         DateTime?
+  status          BookingStatus @default(PENDING)
+  monthlyRent     Float
+  securityDeposit Float?
+  notes           String?
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  // Relations
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room            Room          @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  payments        Payment[]
+
+  @@map("bookings")
+}
+
+model Payment {
+  id          String      @id @default(cuid())
+  userId      String
+  bookingId   String?
+  amount      Float
+  type        PaymentType @default(RENT)
+  status      PaymentStatus @default(PENDING)
+  dueDate     DateTime
+  paidDate    DateTime?
+  method      String?     // 'cash', 'card', 'upi', 'bank_transfer'
+  reference   String?     // transaction reference
+  description String?
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relations
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  booking     Booking?    @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+
+  @@map("payments")
+}
+
+model Notice {
+  id          String      @id @default(cuid())
+  title       String
+  content     String
+  type        NoticeType  @default(GENERAL)
+  priority    Priority    @default(MEDIUM)
+  isActive    Boolean     @default(true)
+  createdById String
+  targetRole  Role?       // null means all users
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relations
+  createdBy   User        @relation("NoticeCreator", fields: [createdById], references: [id], onDelete: Cascade)
+  recipients  User[]      @relation("NoticeRecipients")
+
+  @@map("notices")
+}
+
+// Enums
+enum Role {
+  ADMIN
+  STUDENT
+}
+
+enum RoomType {
+  SINGLE
+  DOUBLE
+  TRIPLE
+  DORMITORY
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+  RESERVED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentType {
+  RENT
+  SECURITY_DEPOSIT
+  MAINTENANCE_FEE
+  LATE_FEE
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+enum NoticeType {
+  GENERAL
+  MAINTENANCE
+  PAYMENT_REMINDER
+  RULE_UPDATE
+  EVENT
+  EMERGENCY
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
