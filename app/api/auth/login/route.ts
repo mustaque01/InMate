@@ -3,6 +3,23 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { prisma } from '@/lib/db'
 
+// Add CORS headers for React app
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': 'http://localhost:5173', // Vite default port
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Credentials': 'true',
+  }
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: corsHeaders(),
+  })
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { email, password, role } = await request.json()
@@ -24,7 +41,10 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { error: 'User not found. Please check your email.' },
-        { status: 401 }
+        { 
+          status: 401,
+          headers: corsHeaders()
+        }
       )
     }
 
@@ -35,7 +55,10 @@ export async function POST(request: NextRequest) {
     if (userRole !== requestedRole) {
       return NextResponse.json(
         { error: `This account is registered as ${user.role}, not ${role}` },
-        { status: 401 }
+        { 
+          status: 401,
+          headers: corsHeaders()
+        }
       )
     }
 
@@ -45,7 +68,10 @@ export async function POST(request: NextRequest) {
     if (!isValidPassword) {
       return NextResponse.json(
         { error: 'Invalid password. Please try again.' },
-        { status: 401 }
+        { 
+          status: 401,
+          headers: corsHeaders()
+        }
       )
     }
 
@@ -63,12 +89,15 @@ export async function POST(request: NextRequest) {
     // Create response
     const response = NextResponse.json({
       success: true,
+      token: token, // Include token for frontend
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
         role: user.role
       }
+    }, {
+      headers: corsHeaders()
     })
 
     // Set HTTP-only cookie
@@ -86,7 +115,10 @@ export async function POST(request: NextRequest) {
     console.error('❌ Login error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: corsHeaders()
+      }
     )
   }
 }
