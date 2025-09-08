@@ -9,6 +9,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  outputFileTracingRoot: process.cwd(),
+  outputFileTracingIncludes: {
+    '/': ['./prisma/**/*'],
+  },
 }
 
 export default nextConfig

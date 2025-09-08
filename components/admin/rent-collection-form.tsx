@@ -84,16 +84,16 @@ export function RentCollectionForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Student Selection */}
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-white">
               <Users className="h-5 w-5" />
               Select Student
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="student">Student with Pending Rent *</Label>
+              <Label htmlFor="student" className="text-blue-200">Student with Pending Rent *</Label>
               <Select
                 required
                 onValueChange={(value) => {
@@ -101,16 +101,16 @@ export function RentCollectionForm() {
                   setSelectedStudent(student)
                 }}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-white/10 border-white/20 text-white">
                   <SelectValue placeholder="Select a student" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-slate-800 border-white/20">
                   {mockPendingStudents.map((student) => (
-                    <SelectItem key={student.id} value={student.id.toString()}>
+                    <SelectItem key={student.id} value={student.id.toString()} className="text-white hover:bg-white/10">
                       <div className="flex items-center gap-2">
                         <Avatar className="h-6 w-6">
                           <AvatarImage src={student.photo || "/placeholder.svg"} alt={student.name} />
-                          <AvatarFallback className="text-xs">
+                          <AvatarFallback className="text-xs bg-blue-600 text-white">
                             {student.name
                               .split(" ")
                               .map((n) => n[0])
@@ -119,7 +119,7 @@ export function RentCollectionForm() {
                         </Avatar>
                         <div>
                           <div className="font-medium">{student.name}</div>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-blue-200">
                             {student.room} • {student.daysOverdue} days overdue
                           </div>
                         </div>
@@ -131,11 +131,11 @@ export function RentCollectionForm() {
             </div>
 
             {selectedStudent && (
-              <div className="p-3 bg-red-50 rounded-lg border border-red-200">
+              <div className="p-3 bg-red-900/30 backdrop-blur-sm rounded-lg border border-red-400/30">
                 <div className="flex items-center gap-3 mb-3">
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={selectedStudent.photo || "/placeholder.svg"} alt={selectedStudent.name} />
-                    <AvatarFallback>
+                    <AvatarFallback className="bg-blue-600 text-white">
                       {selectedStudent.name
                         .split(" ")
                         .map((n: string) => n[0])
@@ -143,29 +143,29 @@ export function RentCollectionForm() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <div className="font-medium">{selectedStudent.name}</div>
-                    <div className="text-sm text-gray-600">{selectedStudent.email}</div>
+                    <div className="font-medium text-white">{selectedStudent.name}</div>
+                    <div className="text-sm text-blue-200">{selectedStudent.email}</div>
                   </div>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Room:</span>
-                    <span className="font-medium">{selectedStudent.room}</span>
+                    <span className="text-blue-200">Room:</span>
+                    <span className="font-medium text-white">{selectedStudent.room}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Monthly Rent:</span>
-                    <span className="font-medium">₹{selectedStudent.monthlyRent.toLocaleString()}</span>
+                    <span className="text-blue-200">Monthly Rent:</span>
+                    <span className="font-medium text-white">₹{selectedStudent.monthlyRent.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Due Date:</span>
-                    <span className="font-medium">{new Date(selectedStudent.dueDate).toLocaleDateString()}</span>
+                    <span className="text-blue-200">Due Date:</span>
+                    <span className="font-medium text-white">{new Date(selectedStudent.dueDate).toLocaleDateString()}</span>
                   </div>
-                  <div className="flex justify-between text-red-600">
+                  <div className="flex justify-between text-red-300">
                     <span>Days Overdue:</span>
-                    <Badge variant="destructive">{selectedStudent.daysOverdue} days</Badge>
+                    <Badge className="bg-red-600 text-white">{selectedStudent.daysOverdue} days</Badge>
                   </div>
                   {selectedStudent.lateFee > 0 && (
-                    <div className="flex justify-between text-red-600">
+                    <div className="flex justify-between text-red-300">
                       <span>Late Fee:</span>
                       <span className="font-medium">₹{selectedStudent.lateFee}</span>
                     </div>
@@ -177,76 +177,76 @@ export function RentCollectionForm() {
         </Card>
 
         {/* Payment Details */}
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-white">
               <DollarSign className="h-5 w-5" />
               Payment Details
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label>Payment Date *</Label>
+              <Label className="text-blue-200">Payment Date *</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !paymentDate && "text-muted-foreground",
+                      "w-full justify-start text-left font-normal bg-white/10 border-white/20 text-white hover:bg-white/20",
+                      !paymentDate && "text-blue-300",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {paymentDate ? format(paymentDate, "PPP") : "Select payment date"}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} required />
+                <PopoverContent className="w-auto p-0 bg-slate-800 border-white/20">
+                  <Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} required className="text-white" />
                 </PopoverContent>
               </Popover>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="paymentMethod">Payment Method *</Label>
+              <Label htmlFor="paymentMethod" className="text-blue-200">Payment Method *</Label>
               <Select required value={paymentMethod} onValueChange={setPaymentMethod}>
-                <SelectTrigger>
+                <SelectTrigger className="bg-white/10 border-white/20 text-white">
                   <SelectValue placeholder="Select payment method" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="cash">Cash</SelectItem>
-                  <SelectItem value="upi">UPI</SelectItem>
-                  <SelectItem value="card">Credit/Debit Card</SelectItem>
-                  <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
-                  <SelectItem value="cheque">Cheque</SelectItem>
+                <SelectContent className="bg-slate-800 border-white/20">
+                  <SelectItem value="cash" className="text-white hover:bg-white/10">Cash</SelectItem>
+                  <SelectItem value="upi" className="text-white hover:bg-white/10">UPI</SelectItem>
+                  <SelectItem value="card" className="text-white hover:bg-white/10">Credit/Debit Card</SelectItem>
+                  <SelectItem value="bank-transfer" className="text-white hover:bg-white/10">Bank Transfer</SelectItem>
+                  <SelectItem value="cheque" className="text-white hover:bg-white/10">Cheque</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {paymentMethod === "cheque" && (
               <div className="space-y-2">
-                <Label htmlFor="chequeNumber">Cheque Number</Label>
-                <Input id="chequeNumber" placeholder="Enter cheque number" />
+                <Label htmlFor="chequeNumber" className="text-blue-200">Cheque Number</Label>
+                <Input id="chequeNumber" placeholder="Enter cheque number" className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
               </div>
             )}
 
             {paymentMethod === "upi" && (
               <div className="space-y-2">
-                <Label htmlFor="transactionId">Transaction ID</Label>
-                <Input id="transactionId" placeholder="Enter UPI transaction ID" />
+                <Label htmlFor="transactionId" className="text-blue-200">Transaction ID</Label>
+                <Input id="transactionId" placeholder="Enter UPI transaction ID" className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
               </div>
             )}
 
             {selectedStudent && selectedStudent.lateFee > 0 && (
               <div className="flex items-center space-x-2">
-                <Checkbox id="lateFee" checked={includeLateFee} onCheckedChange={(checked) => setIncludeLateFee(checked === true)} />
-                <Label htmlFor="lateFee" className="text-sm">
+                <Checkbox id="lateFee" checked={includeLateFee} onCheckedChange={(checked) => setIncludeLateFee(checked === true)} className="border-white/20 data-[state=checked]:bg-blue-600" />
+                <Label htmlFor="lateFee" className="text-sm text-blue-200">
                   Include late fee of ₹{selectedStudent.lateFee}
                 </Label>
               </div>
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="paymentAmount">Payment Amount (₹) *</Label>
+              <Label htmlFor="paymentAmount" className="text-blue-200">Payment Amount (₹) *</Label>
               <Input
                 id="paymentAmount"
                 type="number"
@@ -254,12 +254,13 @@ export function RentCollectionForm() {
                 onChange={(e) => setPaymentAmount(e.target.value)}
                 placeholder="Enter payment amount"
                 required
+                className="bg-white/10 border-white/20 text-white placeholder:text-blue-300"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="notes">Payment Notes</Label>
-              <Textarea id="notes" placeholder="Any additional notes about this payment..." />
+              <Label htmlFor="notes" className="text-blue-200">Payment Notes</Label>
+              <Textarea id="notes" placeholder="Any additional notes about this payment..." className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
             </div>
           </CardContent>
         </Card>
@@ -267,9 +268,9 @@ export function RentCollectionForm() {
 
       {/* Payment Summary */}
       {selectedStudent && (
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-white">
               <Receipt className="h-5 w-5" />
               Payment Summary
             </CardTitle>
@@ -278,44 +279,44 @@ export function RentCollectionForm() {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Student:</span>
-                  <span className="font-medium">{selectedStudent.name}</span>
+                  <span className="text-blue-200">Student:</span>
+                  <span className="font-medium text-white">{selectedStudent.name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Room:</span>
-                  <span className="font-medium">{selectedStudent.room}</span>
+                  <span className="text-blue-200">Room:</span>
+                  <span className="font-medium text-white">{selectedStudent.room}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Month:</span>
-                  <span className="font-medium">December 2024</span>
+                  <span className="text-blue-200">Month:</span>
+                  <span className="font-medium text-white">December 2024</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Payment Method:</span>
-                  <span className="font-medium capitalize">{paymentMethod || "Not selected"}</span>
+                  <span className="text-blue-200">Payment Method:</span>
+                  <span className="font-medium text-white capitalize">{paymentMethod || "Not selected"}</span>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Monthly Rent:</span>
-                  <span className="font-medium">₹{selectedStudent.monthlyRent.toLocaleString()}</span>
+                  <span className="text-blue-200">Monthly Rent:</span>
+                  <span className="font-medium text-white">₹{selectedStudent.monthlyRent.toLocaleString()}</span>
                 </div>
                 {includeLateFee && (
-                  <div className="flex justify-between text-red-600">
+                  <div className="flex justify-between text-red-300">
                     <span>Late Fee:</span>
                     <span className="font-medium">₹{selectedStudent.lateFee}</span>
                   </div>
                 )}
-                <div className="border-t pt-2 flex justify-between text-lg font-bold">
+                <div className="border-t border-white/20 pt-2 flex justify-between text-lg font-bold text-white">
                   <span>Total Amount:</span>
                   <span>₹{paymentAmount ? Number.parseInt(paymentAmount).toLocaleString() : "0"}</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-4 pt-4 border-t">
+            <div className="mt-4 pt-4 border-t border-white/20">
               <div className="flex items-center space-x-2">
-                <Checkbox id="generateReceipt" checked={generateReceipt} onCheckedChange={(checked) => setGenerateReceipt(checked === true)} />
-                <Label htmlFor="generateReceipt" className="text-sm">
+                <Checkbox id="generateReceipt" checked={generateReceipt} onCheckedChange={(checked) => setGenerateReceipt(checked === true)} className="border-white/20 data-[state=checked]:bg-blue-600" />
+                <Label htmlFor="generateReceipt" className="text-sm text-blue-200">
                   Generate and download PDF receipt
                 </Label>
               </div>
@@ -326,10 +327,10 @@ export function RentCollectionForm() {
 
       {/* Submit Buttons */}
       <div className="flex justify-end gap-4">
-        <Button type="button" variant="outline" onClick={() => router.back()}>
+        <Button type="button" variant="outline" onClick={() => router.back()} className="border-white/20 text-blue-200 hover:bg-white/10">
           Cancel
         </Button>
-        <Button type="submit" disabled={isLoading || !selectedStudent}>
+        <Button type="submit" disabled={isLoading || !selectedStudent} className="bg-blue-600 hover:bg-blue-700 text-white">
           {isLoading ? (
             "Processing Payment..."
           ) : (

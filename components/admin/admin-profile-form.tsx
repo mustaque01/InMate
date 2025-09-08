@@ -43,24 +43,24 @@ export function AdminProfileForm() {
 
   return (
     <Tabs defaultValue="profile" className="space-y-6">
-      <TabsList>
-        <TabsTrigger value="profile">Profile Information</TabsTrigger>
-        <TabsTrigger value="password">Change Password</TabsTrigger>
+      <TabsList className="bg-white/10 backdrop-blur-md border border-white/20">
+        <TabsTrigger value="profile" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Profile Information</TabsTrigger>
+        <TabsTrigger value="password" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Change Password</TabsTrigger>
       </TabsList>
 
       <TabsContent value="profile">
         <form onSubmit={handleProfileUpdate} className="space-y-6">
           <div className="grid gap-6 lg:grid-cols-3">
             {/* Profile Photo */}
-            <Card>
+            <Card className="bg-white/10 backdrop-blur-md border border-white/20">
               <CardHeader>
-                <CardTitle>Profile Photo</CardTitle>
+                <CardTitle className="text-white">Profile Photo</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-col items-center space-y-4">
-                  <Avatar className="h-32 w-32">
+                  <Avatar className="h-32 w-32 border-2 border-blue-400">
                     <AvatarImage src="/placeholder.svg" />
-                    <AvatarFallback className="text-2xl">
+                    <AvatarFallback className="text-2xl bg-blue-600 text-white">
                       {user?.name
                         ?.split(" ")
                         .map((n) => n[0])
@@ -69,13 +69,13 @@ export function AdminProfileForm() {
                   </Avatar>
                   <div className="flex flex-col items-center space-y-2">
                     <Label htmlFor="photo" className="cursor-pointer">
-                      <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors">
+                      <div className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
                         <Camera className="h-4 w-4" />
                         Change Photo
                       </div>
                     </Label>
                     <Input id="photo" type="file" accept="image/*" className="hidden" />
-                    <p className="text-xs text-gray-500 text-center">JPG, PNG up to 2MB</p>
+                    <p className="text-xs text-blue-200 text-center">JPG, PNG up to 2MB</p>
                   </div>
                 </div>
               </CardContent>
@@ -83,40 +83,40 @@ export function AdminProfileForm() {
 
             {/* Personal Information */}
             <div className="lg:col-span-2">
-              <Card>
+              <Card className="bg-white/10 backdrop-blur-md border border-white/20">
                 <CardHeader>
-                  <CardTitle>Personal Information</CardTitle>
+                  <CardTitle className="text-white">Personal Information</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" defaultValue="Admin" />
+                      <Label htmlFor="firstName" className="text-blue-200">First Name</Label>
+                      <Input id="firstName" defaultValue="Admin" className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" defaultValue="User" />
+                      <Label htmlFor="lastName" className="text-blue-200">Last Name</Label>
+                      <Input id="lastName" defaultValue="User" className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" defaultValue={user?.email || ""} />
+                    <Label htmlFor="email" className="text-blue-200">Email Address</Label>
+                    <Input id="email" type="email" defaultValue={user?.email || ""} className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" defaultValue={user?.phone || ""} />
+                    <Label htmlFor="phone" className="text-blue-200">Phone Number</Label>
+                    <Input id="phone" type="tel" defaultValue={user?.phone || ""} className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="designation">Designation</Label>
-                      <Input id="designation" defaultValue="Hostel Administrator" />
+                      <Label htmlFor="designation" className="text-blue-200">Designation</Label>
+                      <Input id="designation" defaultValue="Hostel Administrator" className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="department">Department</Label>
-                      <Input id="department" defaultValue="Administration" />
+                      <Label htmlFor="department" className="text-blue-200">Department</Label>
+                      <Input id="department" defaultValue="Administration" className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
                     </div>
                   </div>
                 </CardContent>

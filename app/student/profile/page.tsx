@@ -8,8 +8,8 @@ export default function StudentProfilePage() {
       <StudentLayout>
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
-            <p className="text-gray-600">Manage your personal information and account settings</p>
+            <h1 className="text-3xl font-bold text-white">My Profile</h1>
+            <p className="text-blue-200">Manage your personal information and account settings</p>
           </div>
           <StudentProfileForm />
         </div>

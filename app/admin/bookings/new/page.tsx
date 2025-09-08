@@ -12,14 +12,14 @@ export default function NewBookingPage() {
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <Link href="/admin/bookings">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="text-blue-200 hover:bg-white/10">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Bookings
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">New Booking</h1>
-              <p className="text-gray-600">Assign room and bed to a student with payment details</p>
+              <h1 className="text-3xl font-bold text-white">New Booking</h1>
+              <p className="text-blue-200">Assign room and bed to a student with payment details</p>
             </div>
           </div>
 

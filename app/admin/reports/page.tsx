@@ -9,8 +9,8 @@ export default function ReportsPage() {
       <AdminLayout>
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Reports & Analytics</h1>
-            <p className="text-gray-600">Generate and export various reports for hostel management</p>
+            <h1 className="text-3xl font-bold text-white">Reports & Analytics</h1>
+            <p className="text-blue-200">Generate and export various reports for hostel management</p>
           </div>
 
           <ReportsOverview />

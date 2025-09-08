@@ -36,14 +36,14 @@ export function RoomStats() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat) => (
-        <Card key={stat.title}>
+        <Card key={stat.title} className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
+            <CardTitle className="text-sm font-medium text-blue-200">{stat.title}</CardTitle>
             <stat.icon className={`h-4 w-4 ${stat.color}`} />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stat.value}</div>
-            <p className="text-xs text-muted-foreground">{stat.subtitle}</p>
+            <div className="text-2xl font-bold text-white">{stat.value}</div>
+            <p className="text-xs text-blue-300">{stat.subtitle}</p>
           </CardContent>
         </Card>
       ))}

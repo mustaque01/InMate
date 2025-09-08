@@ -36,20 +36,20 @@ export function DashboardStats() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat) => (
-        <Card key={stat.title}>
+        <Card key={stat.title} className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-            <stat.icon className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-blue-200">{stat.title}</CardTitle>
+            <stat.icon className="h-4 w-4 text-blue-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stat.value}</div>
+            <div className="text-2xl font-bold text-white">{stat.value}</div>
             <p
               className={`text-xs ${
                 stat.changeType === "positive"
-                  ? "text-green-600"
+                  ? "text-green-400"
                   : stat.changeType === "negative"
-                    ? "text-red-600"
-                    : "text-muted-foreground"
+                    ? "text-red-400"
+                    : "text-blue-300"
               }`}
             >
               {stat.change}

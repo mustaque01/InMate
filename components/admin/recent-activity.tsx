@@ -40,27 +40,27 @@ const activities = [
 
 export function RecentActivity() {
   return (
-    <Card>
+    <Card className="bg-white/10 backdrop-blur-md border-white/20">
       <CardHeader>
-        <CardTitle>Recent Activity</CardTitle>
-        <CardDescription>Latest updates and actions in your hostel</CardDescription>
+        <CardTitle className="text-white">Recent Activity</CardTitle>
+        <CardDescription className="text-blue-200">Latest updates and actions in your hostel</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {activities.map((activity) => (
           <div key={activity.id} className="flex items-center gap-3">
             <Avatar className="h-8 w-8">
-              <AvatarFallback className={`${activity.color} bg-gray-100`}>
+              <AvatarFallback className={`${activity.color} bg-white/10 backdrop-blur-sm border border-white/20`}>
                 <activity.icon className="h-4 w-4" />
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 space-y-1">
-              <p className="text-sm font-medium">{activity.description}</p>
-              <p className="text-xs text-gray-500">{activity.time}</p>
+              <p className="text-sm font-medium text-white">{activity.description}</p>
+              <p className="text-xs text-blue-200">{activity.time}</p>
             </div>
           </div>
         ))}
         <div className="pt-2">
-          <Badge variant="outline" className="w-full justify-center">
+          <Badge variant="outline" className="w-full justify-center bg-white/10 backdrop-blur-sm border-white/20 text-blue-200 hover:text-white hover:bg-white/20">
             View All Activity
           </Badge>
         </div>

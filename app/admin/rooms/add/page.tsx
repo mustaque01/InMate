@@ -12,14 +12,14 @@ export default function AddRoomPage() {
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <Link href="/admin/rooms">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="text-blue-200 hover:bg-white/10">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Rooms
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Add New Room</h1>
-              <p className="text-gray-600">Create a new room with bed configurations</p>
+              <h1 className="text-3xl font-bold text-white">Add New Room</h1>
+              <p className="text-blue-200">Create a new room with bed configurations</p>
             </div>
           </div>
 

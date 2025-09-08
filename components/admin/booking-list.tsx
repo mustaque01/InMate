@@ -98,29 +98,29 @@ export function BookingList() {
   }
 
   return (
-    <Card>
+    <Card className="bg-white/10 backdrop-blur-md border border-white/20">
       <CardHeader>
-        <CardTitle>Booking List</CardTitle>
+        <CardTitle className="text-white">Booking List</CardTitle>
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300 h-4 w-4" />
             <Input
               placeholder="Search bookings by student name, email, or room..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-blue-300"
             />
           </div>
           <div className="flex gap-2">
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-40 bg-white/10 border-white/20 text-white">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="checked-out">Checked Out</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
+              <SelectContent className="bg-slate-800 border-white/20">
+                <SelectItem value="all" className="text-white hover:bg-white/10">All Status</SelectItem>
+                <SelectItem value="active" className="text-white hover:bg-white/10">Active</SelectItem>
+                <SelectItem value="checked-out" className="text-white hover:bg-white/10">Checked Out</SelectItem>
+                <SelectItem value="pending" className="text-white hover:bg-white/10">Pending</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -129,11 +129,11 @@ export function BookingList() {
       <CardContent>
         <div className="space-y-4">
           {filteredBookings.map((booking) => (
-            <div key={booking.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+            <div key={booking.id} className="flex items-center justify-between p-4 border border-white/20 rounded-lg hover:bg-white/10 bg-white/5 backdrop-blur-sm">
               <div className="flex items-center gap-4">
-                <Avatar className="h-12 w-12">
+                <Avatar className="h-12 w-12 border-2 border-blue-400">
                   <AvatarImage src={booking.student.photo || "/placeholder.svg"} alt={booking.student.name} />
-                  <AvatarFallback>
+                  <AvatarFallback className="bg-blue-600 text-white">
                     {booking.student.name
                       .split(" ")
                       .map((n) => n[0])
@@ -142,10 +142,10 @@ export function BookingList() {
                 </Avatar>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-semibold">{booking.student.name}</h3>
+                    <h3 className="font-semibold text-white">{booking.student.name}</h3>
                     <Badge variant={getStatusColor(booking.status)}>{booking.status}</Badge>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-4 text-sm text-blue-200">
                     <span className="flex items-center gap-1">
                       <Building2 className="h-3 w-3" />
                       {booking.room} - {booking.bed}
@@ -154,7 +154,7 @@ export function BookingList() {
                       <DollarSign className="h-3 w-3" />₹{booking.monthlyRent.toLocaleString()}/month
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-4 text-sm text-blue-300">
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       Check-in: {new Date(booking.checkIn).toLocaleDateString()}
@@ -167,17 +167,17 @@ export function BookingList() {
               </div>
               <div className="flex items-center gap-2">
                 <div className="text-right text-sm">
-                  <div className="font-medium">₹{booking.securityDeposit.toLocaleString()}</div>
-                  <div className="text-gray-500">Security Deposit</div>
+                  <div className="font-medium text-white">₹{booking.securityDeposit.toLocaleString()}</div>
+                  <div className="text-blue-200">Security Deposit</div>
                 </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="sm" className="text-blue-200 hover:bg-white/10">
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => handleBookingAction("View", booking.id)}>
+                  <DropdownMenuContent align="end" className="bg-slate-800 border-white/20">
+                    <DropdownMenuItem onClick={() => handleBookingAction("View", booking.id)} className="text-white hover:bg-white/10">
                       <Eye className="h-4 w-4 mr-2" />
                       View Details
                     </DropdownMenuItem>

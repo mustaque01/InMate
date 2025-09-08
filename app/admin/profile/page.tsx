@@ -8,8 +8,8 @@ export default function AdminProfilePage() {
       <AdminLayout>
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Admin Profile</h1>
-            <p className="text-gray-600">Manage your account settings and personal information</p>
+            <h1 className="text-3xl font-bold text-white">Admin Profile</h1>
+            <p className="text-blue-200">Manage your account settings and personal information</p>
           </div>
 
           <AdminProfileForm />

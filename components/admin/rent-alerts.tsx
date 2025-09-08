@@ -32,29 +32,36 @@ const rentAlerts = [
 
 export function RentAlerts() {
   return (
-    <Card>
+    <Card className="bg-white/10 backdrop-blur-md border-white/20">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <AlertTriangle className="h-5 w-5 text-red-500" />
+        <CardTitle className="flex items-center gap-2 text-white">
+          <AlertTriangle className="h-5 w-5 text-red-400" />
           Rent Due Alerts
         </CardTitle>
-        <CardDescription>Students with pending rent payments</CardDescription>
+        <CardDescription className="text-blue-200">Students with pending rent payments</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {rentAlerts.map((alert) => (
-          <div key={alert.id} className="flex items-center justify-between p-3 border rounded-lg">
+          <div key={alert.id} className="flex items-center justify-between p-3 border border-white/20 rounded-lg bg-white/5 backdrop-blur-sm">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="font-medium">{alert.studentName}</span>
+                <span className="font-medium text-white">{alert.studentName}</span>
                 <Badge
                   variant={
                     alert.priority === "high" ? "destructive" : alert.priority === "medium" ? "default" : "secondary"
+                  }
+                  className={
+                    alert.priority === "high" 
+                      ? "bg-red-500/20 text-red-400 border-red-400/20" 
+                      : alert.priority === "medium"
+                      ? "bg-yellow-500/20 text-yellow-400 border-yellow-400/20"
+                      : "bg-blue-500/20 text-blue-400 border-blue-400/20"
                   }
                 >
                   {alert.priority}
                 </Badge>
               </div>
-              <div className="flex items-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center gap-4 text-sm text-blue-200">
                 <span className="flex items-center gap-1">
                   <Building2 className="h-3 w-3" />
                   {alert.roomNumber}
@@ -69,12 +76,12 @@ export function RentAlerts() {
                 </span>
               </div>
             </div>
-            <Button size="sm" variant="outline">
+            <Button size="sm" variant="outline" className="border-blue-400/20 text-blue-200 hover:text-white hover:bg-blue-600/20">
               Send Reminder
             </Button>
           </div>
         ))}
-        <Button className="w-full bg-transparent" variant="outline">
+        <Button className="w-full bg-white/10 backdrop-blur-sm border border-white/20 text-blue-200 hover:text-white hover:bg-white/20" variant="outline">
           View All Alerts
         </Button>
       </CardContent>

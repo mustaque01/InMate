@@ -94,16 +94,16 @@ export function NewBookingForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Student Selection */}
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-white">
               <Users className="h-5 w-5" />
               Select Student
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="student">Student *</Label>
+              <Label htmlFor="student" className="text-blue-200">Student *</Label>
               <Select
                 required
                 onValueChange={(value) => {
@@ -111,16 +111,16 @@ export function NewBookingForm() {
                   setSelectedStudent(student)
                 }}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-white/10 border-white/20 text-white">
                   <SelectValue placeholder="Select a student" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-slate-800 border-white/20">
                   {mockStudents.map((student) => (
-                    <SelectItem key={student.id} value={student.id.toString()}>
+                    <SelectItem key={student.id} value={student.id.toString()} className="text-white hover:bg-white/10">
                       <div className="flex items-center gap-2">
                         <Avatar className="h-6 w-6">
                           <AvatarImage src={student.photo || "/placeholder.svg"} alt={student.name} />
-                          <AvatarFallback className="text-xs">
+                          <AvatarFallback className="text-xs bg-blue-600 text-white">
                             {student.name
                               .split(" ")
                               .map((n) => n[0])
@@ -129,7 +129,7 @@ export function NewBookingForm() {
                         </Avatar>
                         <div>
                           <div className="font-medium">{student.name}</div>
-                          <div className="text-xs text-gray-500">{student.email}</div>
+                          <div className="text-xs text-blue-200">{student.email}</div>
                         </div>
                       </div>
                     </SelectItem>
@@ -139,11 +139,11 @@ export function NewBookingForm() {
             </div>
 
             {selectedStudent && (
-              <div className="p-3 bg-gray-50 rounded-lg">
+              <div className="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                 <div className="flex items-center gap-3">
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={selectedStudent.photo || "/placeholder.svg"} alt={selectedStudent.name} />
-                    <AvatarFallback>
+                    <AvatarFallback className="bg-blue-600 text-white">
                       {selectedStudent.name
                         .split(" ")
                         .map((n: string) => n[0])
@@ -151,9 +151,9 @@ export function NewBookingForm() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <div className="font-medium">{selectedStudent.name}</div>
-                    <div className="text-sm text-gray-600">{selectedStudent.email}</div>
-                    <div className="text-sm text-gray-600">{selectedStudent.phone}</div>
+                    <div className="font-medium text-white">{selectedStudent.name}</div>
+                    <div className="text-sm text-blue-200">{selectedStudent.email}</div>
+                    <div className="text-sm text-blue-200">{selectedStudent.phone}</div>
                   </div>
                 </div>
               </div>
@@ -162,16 +162,16 @@ export function NewBookingForm() {
         </Card>
 
         {/* Room Selection */}
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-white">
               <Building2 className="h-5 w-5" />
               Select Room & Bed
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="room">Available Room *</Label>
+              <Label htmlFor="room" className="text-blue-200">Available Room *</Label>
               <Select
                 required
                 onValueChange={(value) => {
@@ -180,22 +180,22 @@ export function NewBookingForm() {
                   setSelectedBed("") // Reset bed selection
                 }}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-white/10 border-white/20 text-white">
                   <SelectValue placeholder="Select a room" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-slate-800 border-white/20">
                   {mockAvailableRooms.map((room) => (
-                    <SelectItem key={room.id} value={room.id.toString()}>
+                    <SelectItem key={room.id} value={room.id.toString()} className="text-white hover:bg-white/10">
                       <div className="flex items-center justify-between w-full">
                         <div>
                           <div className="font-medium">{room.number}</div>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-blue-200">
                             Floor {room.floor} • {room.type}
                           </div>
                         </div>
                         <div className="text-right">
                           <div className="font-medium">₹{room.rent.toLocaleString()}</div>
-                          <div className="text-xs text-gray-500">{room.availableBeds.length} beds available</div>
+                          <div className="text-xs text-blue-200">{room.availableBeds.length} beds available</div>
                         </div>
                       </div>
                     </SelectItem>
@@ -206,14 +206,14 @@ export function NewBookingForm() {
 
             {selectedRoom && (
               <div className="space-y-2">
-                <Label htmlFor="bed">Select Bed *</Label>
+                <Label htmlFor="bed" className="text-blue-200">Select Bed *</Label>
                 <Select required value={selectedBed} onValueChange={setSelectedBed}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white/10 border-white/20 text-white">
                     <SelectValue placeholder="Select a bed" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-slate-800 border-white/20">
                     {selectedRoom.availableBeds.map((bed: string) => (
-                      <SelectItem key={bed} value={bed}>
+                      <SelectItem key={bed} value={bed} className="text-white hover:bg-white/10">
                         {bed}
                       </SelectItem>
                     ))}
@@ -223,19 +223,19 @@ export function NewBookingForm() {
             )}
 
             {selectedRoom && (
-              <div className="p-3 bg-gray-50 rounded-lg">
+              <div className="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Room:</span>
-                    <span className="font-medium">{selectedRoom.number}</span>
+                    <span className="text-sm text-blue-200">Room:</span>
+                    <span className="font-medium text-white">{selectedRoom.number}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Type:</span>
-                    <Badge variant="outline">{selectedRoom.type}</Badge>
+                    <span className="text-sm text-blue-200">Type:</span>
+                    <Badge className="bg-blue-600 text-white">{selectedRoom.type}</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Monthly Rent:</span>
-                    <span className="font-medium">₹{selectedRoom.rent.toLocaleString()}</span>
+                    <span className="text-sm text-blue-200">Monthly Rent:</span>
+                    <span className="font-medium text-white">₹{selectedRoom.rent.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -245,9 +245,9 @@ export function NewBookingForm() {
       </div>
 
       {/* Booking Details */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-white">
             <CalendarIcon className="h-5 w-5" />
             Booking Details
           </CardTitle>
@@ -255,59 +255,59 @@ export function NewBookingForm() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label>Check-in Date *</Label>
+              <Label className="text-blue-200">Check-in Date *</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !checkInDate && "text-muted-foreground",
+                      "w-full justify-start text-left font-normal bg-white/10 border-white/20 text-white hover:bg-white/20",
+                      !checkInDate && "text-blue-300",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {checkInDate ? format(checkInDate, "PPP") : "Select check-in date"}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar mode="single" selected={checkInDate} onSelect={setCheckInDate} initialFocus />
+                <PopoverContent className="w-auto p-0 bg-slate-800 border-white/20">
+                  <Calendar mode="single" selected={checkInDate} onSelect={setCheckInDate} initialFocus className="text-white" />
                 </PopoverContent>
               </Popover>
             </div>
 
             <div className="space-y-2">
-              <Label>Next Rent Due Date</Label>
+              <Label className="text-blue-200">Next Rent Due Date</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !nextRentDue && "text-muted-foreground",
+                      "w-full justify-start text-left font-normal bg-white/10 border-white/20 text-white hover:bg-white/20",
+                      !nextRentDue && "text-blue-300",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {nextRentDue ? format(nextRentDue, "PPP") : "Auto-calculated"}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar mode="single" selected={nextRentDue} onSelect={setNextRentDue} initialFocus />
+                <PopoverContent className="w-auto p-0 bg-slate-800 border-white/20">
+                  <Calendar mode="single" selected={nextRentDue} onSelect={setNextRentDue} initialFocus className="text-white" />
                 </PopoverContent>
               </Popover>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="notes">Booking Notes</Label>
-            <Textarea id="notes" placeholder="Any additional notes about this booking..." />
+            <Label htmlFor="notes" className="text-blue-200">Booking Notes</Label>
+            <Textarea id="notes" placeholder="Any additional notes about this booking..." className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
           </div>
         </CardContent>
       </Card>
 
       {/* Payment Details */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-white">
             <DollarSign className="h-5 w-5" />
             Payment Details
           </CardTitle>
@@ -315,7 +315,7 @@ export function NewBookingForm() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="securityDeposit">Security Deposit (₹) *</Label>
+              <Label htmlFor="securityDeposit" className="text-blue-200">Security Deposit (₹) *</Label>
               <Input
                 id="securityDeposit"
                 type="number"
@@ -323,10 +323,11 @@ export function NewBookingForm() {
                 onChange={(e) => setSecurityDeposit(e.target.value)}
                 placeholder="Enter security deposit"
                 required
+                className="bg-white/10 border-white/20 text-white placeholder:text-blue-300"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="bookingAmount">Total Booking Amount (₹) *</Label>
+              <Label htmlFor="bookingAmount" className="text-blue-200">Total Booking Amount (₹) *</Label>
               <Input
                 id="bookingAmount"
                 type="number"
@@ -334,41 +335,42 @@ export function NewBookingForm() {
                 onChange={(e) => setBookingAmount(e.target.value)}
                 placeholder="Enter total amount"
                 required
+                className="bg-white/10 border-white/20 text-white placeholder:text-blue-300"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="paymentMethod">Payment Method *</Label>
+            <Label htmlFor="paymentMethod" className="text-blue-200">Payment Method *</Label>
             <Select required>
-              <SelectTrigger>
+              <SelectTrigger className="bg-white/10 border-white/20 text-white">
                 <SelectValue placeholder="Select payment method" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="cash">Cash</SelectItem>
-                <SelectItem value="card">Credit/Debit Card</SelectItem>
-                <SelectItem value="upi">UPI</SelectItem>
-                <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
-                <SelectItem value="cheque">Cheque</SelectItem>
+              <SelectContent className="bg-slate-800 border-white/20">
+                <SelectItem value="cash" className="text-white hover:bg-white/10">Cash</SelectItem>
+                <SelectItem value="card" className="text-white hover:bg-white/10">Credit/Debit Card</SelectItem>
+                <SelectItem value="upi" className="text-white hover:bg-white/10">UPI</SelectItem>
+                <SelectItem value="bank-transfer" className="text-white hover:bg-white/10">Bank Transfer</SelectItem>
+                <SelectItem value="cheque" className="text-white hover:bg-white/10">Cheque</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           {selectedRoom && (
-            <div className="p-4 bg-blue-50 rounded-lg">
-              <h4 className="font-medium mb-2">Payment Breakdown</h4>
+            <div className="p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+              <h4 className="font-medium mb-2 text-white">Payment Breakdown</h4>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
-                  <span>Monthly Rent:</span>
-                  <span>₹{selectedRoom.rent.toLocaleString()}</span>
+                  <span className="text-blue-200">Monthly Rent:</span>
+                  <span className="text-white">₹{selectedRoom.rent.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Security Deposit:</span>
-                  <span>₹{securityDeposit ? Number.parseInt(securityDeposit).toLocaleString() : "0"}</span>
+                  <span className="text-blue-200">Security Deposit:</span>
+                  <span className="text-white">₹{securityDeposit ? Number.parseInt(securityDeposit).toLocaleString() : "0"}</span>
                 </div>
-                <div className="border-t pt-1 flex justify-between font-medium">
-                  <span>Total Amount:</span>
-                  <span>₹{bookingAmount ? Number.parseInt(bookingAmount).toLocaleString() : "0"}</span>
+                <div className="border-t border-white/20 pt-1 flex justify-between font-medium">
+                  <span className="text-blue-200">Total Amount:</span>
+                  <span className="text-white">₹{bookingAmount ? Number.parseInt(bookingAmount).toLocaleString() : "0"}</span>
                 </div>
               </div>
             </div>
@@ -378,10 +380,10 @@ export function NewBookingForm() {
 
       {/* Submit Buttons */}
       <div className="flex justify-end gap-4">
-        <Button type="button" variant="outline" onClick={() => router.back()}>
+        <Button type="button" variant="outline" onClick={() => router.back()} className="border-white/20 text-blue-200 hover:bg-white/10">
           Cancel
         </Button>
-        <Button type="submit" disabled={isLoading}>
+        <Button type="submit" disabled={isLoading} className="bg-blue-600 hover:bg-blue-700 text-white">
           {isLoading ? "Creating Booking..." : "Create Booking"}
         </Button>
       </div>
