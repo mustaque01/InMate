@@ -1,15 +1,13 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
+import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Eye, EyeOff, ArrowLeft } from "lucide-react"
+import { Eye, EyeOff, ArrowLeft, Shield, Users, Lock, Mail, Phone, User, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
@@ -80,56 +78,102 @@ export function AuthForm({ userType }: AuthFormProps) {
     alert("Password reset link sent to your email!")
   }
 
+  const UserIcon = userType === "admin" ? Shield : Users
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="mb-6">
-          <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100/50 to-sky-100/30 relative overflow-hidden flex items-center justify-center p-4">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 bg-grid opacity-20"></div>
+      <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-20 right-20 w-80 h-80 bg-sky-500/20 rounded-full blur-3xl animate-float-delayed"></div>
+      
+      <div className="relative z-10 w-full max-w-md">
+        <div className="mb-8 animate-fade-in">
+          <Link 
+            href="/" 
+            className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors duration-300 group"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Home
           </Link>
         </div>
 
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl capitalize">{userType} Portal</CardTitle>
-            <CardDescription>Sign in to access your {userType} dashboard</CardDescription>
+        <Card className="glass-card border-0 shadow-2xl animate-slide-in">
+          <CardHeader className="text-center pb-8">
+            <div className="flex items-center justify-center mb-6 group">
+              <div className="relative">
+                <UserIcon className="h-12 w-12 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+                <div className="absolute inset-0 h-12 w-12 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-500/30 transition-colors"></div>
+              </div>
+              <Sparkles className="h-6 w-6 text-sky-500 ml-2 animate-bounce-in animate-delay-300" />
+            </div>
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent capitalize">
+              {userType} Portal
+            </CardTitle>
+            <CardDescription className="text-lg text-slate-600">
+              Secure access to your {userType} dashboard
+            </CardDescription>
           </CardHeader>
-          <CardContent>
+          
+          <CardContent className="space-y-6">
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Login</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 rounded-lg">
+                <TabsTrigger 
+                  value="login" 
+                  className="rounded-md transition-all duration-300 data-[state=active]:bg-background data-[state=active]:shadow-md"
+                >
+                  Login
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="signup"
+                  className="rounded-md transition-all duration-300 data-[state=active]:bg-background data-[state=active]:shadow-md"
+                >
+                  Sign Up
+                </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="login">
-                <form onSubmit={handleSubmit} className="space-y-4">
+              <TabsContent value="login" className="space-y-6 mt-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {error && (
-                    <Alert variant="destructive">
-                      <AlertDescription>{error}</AlertDescription>
+                    <Alert variant="destructive" className="border-destructive/50 bg-destructive/10 animate-shake">
+                      <AlertDescription className="text-destructive font-medium">{error}</AlertDescription>
                     </Alert>
                   )}
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" name="email" type="email" placeholder="Enter your email" required />
+                  <div className="form-group">
+                    <Label htmlFor="email" className="flex items-center gap-2 text-sm font-medium">
+                      <Mail className="h-4 w-4 text-muted-foreground" />
+                      Email Address
+                    </Label>
+                    <Input 
+                      id="email" 
+                      name="email" 
+                      type="email" 
+                      placeholder="Enter your email address" 
+                      required 
+                      className="mt-2 h-12 text-lg transition-all duration-300 focus:scale-[1.02]"
+                    />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="password">Password</Label>
-                    <div className="relative">
+                  <div className="form-group">
+                    <Label htmlFor="password" className="flex items-center gap-2 text-sm font-medium">
+                      <Lock className="h-4 w-4 text-muted-foreground" />
+                      Password
+                    </Label>
+                    <div className="relative mt-2">
                       <Input
                         id="password"
                         name="password"
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
                         required
+                        className="h-12 text-lg pr-12 transition-all duration-300 focus:scale-[1.02]"
                       />
                       <Button
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                        className="absolute right-1 top-1 h-10 w-10 hover:bg-muted/50 rounded-md transition-all duration-300"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -137,60 +181,115 @@ export function AuthForm({ userType }: AuthFormProps) {
                     </div>
                   </div>
 
-                  <Button type="button" variant="link" className="px-0 text-sm" onClick={handleForgotPassword}>
-                    Forgot password?
+                  <Button 
+                    type="button" 
+                    variant="link" 
+                    className="px-0 text-sm text-muted-foreground hover:text-primary transition-colors" 
+                    onClick={handleForgotPassword}
+                  >
+                    Forgot your password?
                   </Button>
 
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? "Signing in..." : "Sign In"}
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-300" 
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        Signing in...
+                      </div>
+                    ) : (
+                      "Sign In"
+                    )}
                   </Button>
                 </form>
               </TabsContent>
 
-              <TabsContent value="signup">
-                <form onSubmit={handleSignupSubmit} className="space-y-4">
+              <TabsContent value="signup" className="space-y-6 mt-6">
+                <form onSubmit={handleSignupSubmit} className="space-y-6">
                   {error && (
-                    <Alert variant="destructive">
-                      <AlertDescription>{error}</AlertDescription>
+                    <Alert variant="destructive" className="border-destructive/50 bg-destructive/10 animate-shake">
+                      <AlertDescription className="text-destructive font-medium">{error}</AlertDescription>
                     </Alert>
                   )}
 
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" name="firstName" placeholder="First name" required />
+                    <div className="form-group">
+                      <Label htmlFor="firstName" className="flex items-center gap-2 text-sm font-medium">
+                        <User className="h-4 w-4 text-muted-foreground" />
+                        First Name
+                      </Label>
+                      <Input 
+                        id="firstName" 
+                        name="firstName" 
+                        placeholder="First name" 
+                        required 
+                        className="mt-2 h-11 transition-all duration-300 focus:scale-[1.02]"
+                      />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" name="lastName" placeholder="Last name" required />
+                    <div className="form-group">
+                      <Label htmlFor="lastName" className="text-sm font-medium">Last Name</Label>
+                      <Input 
+                        id="lastName" 
+                        name="lastName" 
+                        placeholder="Last name" 
+                        required 
+                        className="mt-2 h-11 transition-all duration-300 focus:scale-[1.02]"
+                      />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="signupEmail">Email</Label>
-                    <Input id="signupEmail" name="signupEmail" type="email" placeholder="Enter your email" required />
+                  <div className="form-group">
+                    <Label htmlFor="signupEmail" className="flex items-center gap-2 text-sm font-medium">
+                      <Mail className="h-4 w-4 text-muted-foreground" />
+                      Email Address
+                    </Label>
+                    <Input 
+                      id="signupEmail" 
+                      name="signupEmail" 
+                      type="email" 
+                      placeholder="Enter your email address" 
+                      required 
+                      className="mt-2 h-11 transition-all duration-300 focus:scale-[1.02]"
+                    />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" name="phone" type="tel" placeholder="Enter phone number" required />
+                  <div className="form-group">
+                    <Label htmlFor="phone" className="flex items-center gap-2 text-sm font-medium">
+                      <Phone className="h-4 w-4 text-muted-foreground" />
+                      Phone Number
+                    </Label>
+                    <Input 
+                      id="phone" 
+                      name="phone" 
+                      type="tel" 
+                      placeholder="Enter phone number" 
+                      required 
+                      className="mt-2 h-11 transition-all duration-300 focus:scale-[1.02]"
+                    />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="signupPassword">Password</Label>
-                    <div className="relative">
+                  <div className="form-group">
+                    <Label htmlFor="signupPassword" className="flex items-center gap-2 text-sm font-medium">
+                      <Lock className="h-4 w-4 text-muted-foreground" />
+                      Password
+                    </Label>
+                    <div className="relative mt-2">
                       <Input
                         id="signupPassword"
                         name="signupPassword"
                         type={showPassword ? "text" : "password"}
-                        placeholder="Create password"
+                        placeholder="Create a strong password"
                         required
+                        className="h-11 pr-12 transition-all duration-300 focus:scale-[1.02]"
                       />
                       <Button
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                        className="absolute right-1 top-1 h-9 w-9 hover:bg-muted/50 rounded-md transition-all duration-300"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -198,12 +297,32 @@ export function AuthForm({ userType }: AuthFormProps) {
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? "Creating account..." : "Create Account"}
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300" 
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        Creating account...
+                      </div>
+                    ) : (
+                      "Create Account"
+                    )}
                   </Button>
                 </form>
               </TabsContent>
             </Tabs>
+
+            {/* Test Credentials */}
+            <div className="mt-8 p-4 bg-muted/30 rounded-lg border border-border/50">
+              <h4 className="text-sm font-medium text-muted-foreground mb-2">Test Credentials:</h4>
+              <div className="space-y-1 text-xs text-muted-foreground">
+                <p><strong>Admin:</strong> admin@hostel.com / admin123</p>
+                <p><strong>Student:</strong> john.doe@student.com / student123</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
