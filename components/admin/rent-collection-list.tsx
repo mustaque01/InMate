@@ -137,35 +137,35 @@ export function RentCollectionList() {
 
   return (
     <Tabs defaultValue="current" className="space-y-4">
-      <TabsList>
-        <TabsTrigger value="current">Current Month</TabsTrigger>
-        <TabsTrigger value="history">Payment History</TabsTrigger>
+      <TabsList className="bg-white/10 backdrop-blur-md border border-white/20">
+        <TabsTrigger value="current" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Current Month</TabsTrigger>
+        <TabsTrigger value="history" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Payment History</TabsTrigger>
       </TabsList>
 
       <TabsContent value="current">
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle>December 2024 Rent Collection</CardTitle>
+            <CardTitle className="text-white">December 2024 Rent Collection</CardTitle>
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300 h-4 w-4" />
                 <Input
                   placeholder="Search by student name, email, or room..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-blue-300"
                 />
               </div>
               <div className="flex gap-2">
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="w-32">
+                  <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white">
                     <SelectValue placeholder="Status" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="paid">Paid</SelectItem>
-                    <SelectItem value="overdue">Overdue</SelectItem>
-                    <SelectItem value="partial">Partial</SelectItem>
+                  <SelectContent className="bg-slate-800 border-white/20">
+                    <SelectItem value="all" className="text-white hover:bg-white/10">All Status</SelectItem>
+                    <SelectItem value="paid" className="text-white hover:bg-white/10">Paid</SelectItem>
+                    <SelectItem value="overdue" className="text-white hover:bg-white/10">Overdue</SelectItem>
+                    <SelectItem value="partial" className="text-white hover:bg-white/10">Partial</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -272,9 +272,9 @@ export function RentCollectionList() {
       </TabsContent>
 
       <TabsContent value="history">
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle>Payment History</CardTitle>
+            <CardTitle className="text-white">Payment History</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">

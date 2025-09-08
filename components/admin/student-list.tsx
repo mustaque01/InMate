@@ -98,38 +98,38 @@ export function StudentList() {
   }
 
   return (
-    <Card>
+    <Card className="bg-white/10 backdrop-blur-md border border-white/20">
       <CardHeader>
-        <CardTitle>Student List</CardTitle>
+        <CardTitle className="text-white">Student List</CardTitle>
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300 h-4 w-4" />
             <Input
               placeholder="Search students by name, email, or room..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-blue-300"
             />
           </div>
           <div className="flex gap-2">
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="inactive">Inactive</SelectItem>
+              <SelectContent className="bg-slate-800 border-white/20">
+                <SelectItem value="all" className="text-white hover:bg-white/10">All Status</SelectItem>
+                <SelectItem value="active" className="text-white hover:bg-white/10">Active</SelectItem>
+                <SelectItem value="inactive" className="text-white hover:bg-white/10">Inactive</SelectItem>
               </SelectContent>
             </Select>
             <Select value={rentFilter} onValueChange={setRentFilter}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white">
                 <SelectValue placeholder="Rent" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Rent</SelectItem>
-                <SelectItem value="paid">Paid</SelectItem>
-                <SelectItem value="due">Due</SelectItem>
+              <SelectContent className="bg-slate-800 border-white/20">
+                <SelectItem value="all" className="text-white hover:bg-white/10">All Rent</SelectItem>
+                <SelectItem value="paid" className="text-white hover:bg-white/10">Paid</SelectItem>
+                <SelectItem value="due" className="text-white hover:bg-white/10">Due</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -138,11 +138,11 @@ export function StudentList() {
       <CardContent>
         <div className="space-y-4">
           {filteredStudents.map((student) => (
-            <div key={student.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+            <div key={student.id} className="flex items-center justify-between p-4 border border-white/20 rounded-lg hover:bg-white/10 bg-white/5 backdrop-blur-sm">
               <div className="flex items-center gap-4">
-                <Avatar className="h-12 w-12">
+                <Avatar className="h-12 w-12 border-2 border-blue-400">
                   <AvatarImage src={student.photo || "/placeholder.svg"} alt={student.name} />
-                  <AvatarFallback>
+                  <AvatarFallback className="bg-blue-600 text-white">
                     {student.name
                       .split(" ")
                       .map((n) => n[0])

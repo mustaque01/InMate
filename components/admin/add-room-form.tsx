@@ -33,27 +33,27 @@ export function AddRoomForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Room Information */}
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle>Room Information</CardTitle>
+            <CardTitle className="text-white">Room Information</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="roomNumber">Room Number *</Label>
-                <Input id="roomNumber" placeholder="e.g., A-101" required />
+                <Label htmlFor="roomNumber" className="text-blue-200">Room Number *</Label>
+                <Input id="roomNumber" placeholder="e.g., A-101" required className="bg-white/10 border-white/20 text-white placeholder:text-blue-300" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="block">Block *</Label>
+                <Label htmlFor="block" className="text-blue-200">Block *</Label>
                 <Select required>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white/10 border-white/20 text-white">
                     <SelectValue placeholder="Select block" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="A">Block A</SelectItem>
-                    <SelectItem value="B">Block B</SelectItem>
-                    <SelectItem value="C">Block C</SelectItem>
-                    <SelectItem value="D">Block D</SelectItem>
+                  <SelectContent className="bg-slate-800 border-white/20">
+                    <SelectItem value="A" className="text-white hover:bg-white/10">Block A</SelectItem>
+                    <SelectItem value="B" className="text-white hover:bg-white/10">Block B</SelectItem>
+                    <SelectItem value="C" className="text-white hover:bg-white/10">Block C</SelectItem>
+                    <SelectItem value="D" className="text-white hover:bg-white/10">Block D</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -61,23 +61,23 @@ export function AddRoomForm() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="floor">Floor *</Label>
+                <Label htmlFor="floor" className="text-blue-200">Floor *</Label>
                 <Select required>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white/10 border-white/20 text-white">
                     <SelectValue placeholder="Select floor" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1">Floor 1</SelectItem>
-                    <SelectItem value="2">Floor 2</SelectItem>
-                    <SelectItem value="3">Floor 3</SelectItem>
-                    <SelectItem value="4">Floor 4</SelectItem>
+                  <SelectContent className="bg-slate-800 border-white/20">
+                    <SelectItem value="1" className="text-white hover:bg-white/10">Floor 1</SelectItem>
+                    <SelectItem value="2" className="text-white hover:bg-white/10">Floor 2</SelectItem>
+                    <SelectItem value="3" className="text-white hover:bg-white/10">Floor 3</SelectItem>
+                    <SelectItem value="4" className="text-white hover:bg-white/10">Floor 4</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="roomType">Room Type *</Label>
+                <Label htmlFor="roomType" className="text-blue-200">Room Type *</Label>
                 <Select required>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white/10 border-white/20 text-white">
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -117,9 +117,9 @@ export function AddRoomForm() {
         </Card>
 
         {/* Room Features */}
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle>Room Features & Amenities</CardTitle>
+            <CardTitle className="text-white">Room Features & Amenities</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
@@ -191,9 +191,9 @@ export function AddRoomForm() {
       </div>
 
       {/* Bed Configuration */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle>Bed Configuration</CardTitle>
+          <CardTitle className="text-white">Bed Configuration</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {Array.from({ length: bedCount }, (_, index) => (

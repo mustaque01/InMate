@@ -54,9 +54,9 @@ export function AddStudentForm() {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Personal Information */}
         <div className="lg:col-span-2">
-          <Card>
+          <Card className="bg-white/10 backdrop-blur-md border border-white/20">
             <CardHeader>
-              <CardTitle>Personal Information</CardTitle>
+              <CardTitle className="text-white">Personal Information</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -122,9 +122,9 @@ export function AddStudentForm() {
 
         {/* Photo Upload */}
         <div>
-          <Card>
+          <Card className="bg-white/10 backdrop-blur-md border border-white/20">
             <CardHeader>
-              <CardTitle>Student Photo</CardTitle>
+              <CardTitle className="text-white">Student Photo</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex flex-col items-center space-y-4">
@@ -157,9 +157,9 @@ export function AddStudentForm() {
       </div>
 
       {/* Academic Information */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle>Academic Information</CardTitle>
+          <CardTitle className="text-white">Academic Information</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
@@ -213,9 +213,9 @@ export function AddStudentForm() {
       </Card>
 
       {/* Document Upload */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle>Document Upload</CardTitle>
+          <CardTitle className="text-white">Document Upload</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">

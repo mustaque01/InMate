@@ -87,16 +87,16 @@ export function ReportsList() {
   return (
     <div className="space-y-6">
       {/* Quick Export Actions */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle>Quick Export</CardTitle>
+          <CardTitle className="text-white">Quick Export</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3">
             <Button
               variant="outline"
               onClick={() => handleQuickExport("Current Month Rent Due")}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 border-blue-300 text-blue-200 hover:bg-blue-500/20"
             >
               <Download className="h-4 w-4" />
               Rent Due List (Excel)
@@ -104,7 +104,7 @@ export function ReportsList() {
             <Button
               variant="outline"
               onClick={() => handleQuickExport("All Students")}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 border-blue-300 text-blue-200 hover:bg-blue-500/20"
             >
               <Download className="h-4 w-4" />
               Student List (Excel)
@@ -112,7 +112,7 @@ export function ReportsList() {
             <Button
               variant="outline"
               onClick={() => handleQuickExport("Payment History")}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 border-blue-300 text-blue-200 hover:bg-blue-500/20"
             >
               <Download className="h-4 w-4" />
               Payment History (Excel)
@@ -122,58 +122,60 @@ export function ReportsList() {
       </Card>
 
       {/* Date Range Filter */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle>Report Filters</CardTitle>
+          <CardTitle className="text-white">Report Filters</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">From Date</label>
+              <label className="text-sm font-medium text-blue-200">From Date</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !selectedDateRange.from && "text-muted-foreground",
+                      "w-full justify-start text-left font-normal border-blue-300 text-blue-200 hover:bg-blue-500/20",
+                      !selectedDateRange.from && "text-blue-300",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {selectedDateRange.from ? format(selectedDateRange.from, "PPP") : "Select start date"}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
+                <PopoverContent className="w-auto p-0 bg-white/10 backdrop-blur-md border border-white/20">
                   <Calendar
                     mode="single"
                     selected={selectedDateRange.from}
                     onSelect={(date) => setSelectedDateRange((prev) => ({ ...prev, from: date }))}
                     initialFocus
+                    className="text-white"
                   />
                 </PopoverContent>
               </Popover>
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">To Date</label>
+              <label className="text-sm font-medium text-blue-200">To Date</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !selectedDateRange.to && "text-muted-foreground",
+                      "w-full justify-start text-left font-normal border-blue-300 text-blue-200 hover:bg-blue-500/20",
+                      !selectedDateRange.to && "text-blue-300",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {selectedDateRange.to ? format(selectedDateRange.to, "PPP") : "Select end date"}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
+                <PopoverContent className="w-auto p-0 bg-white/10 backdrop-blur-md border border-white/20">
                   <Calendar
                     mode="single"
                     selected={selectedDateRange.to}
                     onSelect={(date) => setSelectedDateRange((prev) => ({ ...prev, to: date }))}
                     initialFocus
+                    className="text-white"
                   />
                 </PopoverContent>
               </Popover>
@@ -183,26 +185,26 @@ export function ReportsList() {
       </Card>
 
       {/* Available Reports */}
-      <Card>
+      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
         <CardHeader>
-          <CardTitle>Available Reports</CardTitle>
+          <CardTitle className="text-white">Available Reports</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2">
             {reportTypes.map((report) => (
-              <div key={report.id} className="p-4 border rounded-lg hover:bg-gray-50">
+              <div key={report.id} className="p-4 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <report.icon className={`h-6 w-6 ${report.color}`} />
                     <div>
-                      <h3 className="font-semibold">{report.title}</h3>
-                      <p className="text-sm text-gray-600">{report.description}</p>
+                      <h3 className="font-semibold text-white">{report.title}</h3>
+                      <p className="text-sm text-blue-200">{report.description}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-blue-300">
                     Last generated: {new Date(report.lastGenerated).toLocaleDateString()}
                   </div>
                   <div className="flex gap-2">
@@ -213,7 +215,7 @@ export function ReportsList() {
                         variant="outline"
                         onClick={() => handleGenerateReport(report.id, format)}
                         disabled={isGenerating === `${report.id}-${format}`}
-                        className="flex items-center gap-1"
+                        className="flex items-center gap-1 border-blue-300 text-blue-200 hover:bg-blue-500/20"
                       >
                         <Download className="h-3 w-3" />
                         {isGenerating === `${report.id}-${format}` ? "Generating..." : format}

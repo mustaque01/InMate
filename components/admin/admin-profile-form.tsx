@@ -125,9 +125,9 @@ export function AdminProfileForm() {
           </div>
 
           {/* Contact Information */}
-          <Card>
+          <Card className="bg-white/10 backdrop-blur-md border border-white/20">
             <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
+              <CardTitle className="text-white">Contact Information</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -159,9 +159,9 @@ export function AdminProfileForm() {
       </TabsContent>
 
       <TabsContent value="password">
-        <Card>
+        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-white">
               <Key className="h-5 w-5" />
               Change Password
             </CardTitle>

@@ -126,27 +126,27 @@ export function RoomGrid() {
   return (
     <div className="space-y-6">
       <Tabs value={selectedFloor} onValueChange={setSelectedFloor}>
-        <TabsList>
-          <TabsTrigger value="1">Floor 1</TabsTrigger>
-          <TabsTrigger value="2">Floor 2</TabsTrigger>
-          <TabsTrigger value="3">Floor 3</TabsTrigger>
-          <TabsTrigger value="4">Floor 4</TabsTrigger>
+        <TabsList className="bg-white/10 backdrop-blur-md border border-white/20">
+          <TabsTrigger value="1" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Floor 1</TabsTrigger>
+          <TabsTrigger value="2" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Floor 2</TabsTrigger>
+          <TabsTrigger value="3" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Floor 3</TabsTrigger>
+          <TabsTrigger value="4" className="text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">Floor 4</TabsTrigger>
         </TabsList>
 
         {["1", "2", "3", "4"].map((floor) => (
           <TabsContent key={floor} value={floor} className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredRooms.map((room) => (
-                <Card key={room.id} className="hover:shadow-md transition-shadow">
+                <Card key={room.id} className="hover:shadow-md transition-shadow bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15">
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-lg flex items-center gap-2">
+                      <CardTitle className="text-lg flex items-center gap-2 text-white">
                         <Building2 className="h-4 w-4" />
                         {room.number}
                       </CardTitle>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm">
+                          <Button variant="ghost" size="sm" className="text-blue-200 hover:bg-white/10">
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
