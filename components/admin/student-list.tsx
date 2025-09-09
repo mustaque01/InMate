@@ -9,62 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search, MoreHorizontal, Edit, Trash2, Eye, Phone, Mail } from "lucide-react"
-
-// Mock student data
-const mockStudents = [
-  {
-    id: 1,
-    name: "Rahul Sharma",
-    email: "rahul.sharma@email.com",
-    phone: "+91 9876543210",
-    roomNumber: "A-101",
-    course: "B.Tech CSE",
-    year: "3rd Year",
-    status: "active",
-    joinDate: "2024-01-15",
-    photo: "/diverse-students.png",
-    rentStatus: "paid",
-  },
-  {
-    id: 2,
-    name: "Priya Patel",
-    email: "priya.patel@email.com",
-    phone: "+91 9876543211",
-    roomNumber: "B-205",
-    course: "MBA",
-    year: "1st Year",
-    status: "active",
-    joinDate: "2024-02-20",
-    photo: "/diverse-female-student.png",
-    rentStatus: "due",
-  },
-  {
-    id: 3,
-    name: "Amit Kumar",
-    email: "amit.kumar@email.com",
-    phone: "+91 9876543212",
-    roomNumber: "C-102",
-    course: "B.Sc Physics",
-    year: "2nd Year",
-    status: "active",
-    joinDate: "2024-03-10",
-    photo: "/male-student-studying.png",
-    rentStatus: "paid",
-  },
-  {
-    id: 4,
-    name: "Sneha Singh",
-    email: "sneha.singh@email.com",
-    phone: "+91 9876543213",
-    roomNumber: "D-301",
-    course: "M.Tech",
-    year: "1st Year",
-    status: "inactive",
-    joinDate: "2023-08-15",
-    photo: "/female-student-2.png",
-    rentStatus: "paid",
-  },
-]
+import { mockStudents } from "@/lib/mock-data"
 
 export function StudentList() {
   const [searchTerm, setSearchTerm] = useState("")

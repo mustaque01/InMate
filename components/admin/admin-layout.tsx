@@ -17,6 +17,9 @@ import {
   LogOut,
   Menu,
   Bell,
+  BarChart3,
+  AlertTriangle,
+  RefreshCw,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -28,6 +31,9 @@ const navigation = [
   { name: "Rooms & Beds", href: "/admin/rooms", icon: Building2 },
   { name: "Bookings", href: "/admin/bookings", icon: Calendar },
   { name: "Rent Collection", href: "/admin/rent", icon: CreditCard },
+  { name: "Payment Analytics", href: "/admin/payments/analytics", icon: BarChart3 },
+  { name: "Payment Reminders", href: "/admin/payments/reminders", icon: AlertTriangle },
+  { name: "Refund Requests", href: "/admin/payments/refunds", icon: RefreshCw },
   { name: "Reports", href: "/admin/reports", icon: FileText },
   { name: "Profile", href: "/admin/profile", icon: User },
 ]
@@ -58,20 +64,20 @@ export function AdminLayout({ children }: AdminLayoutProps) {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top bar */}
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-white/10 bg-slate-900/80 backdrop-blur-md px-4 shadow-xl sm:gap-x-6 sm:px-6 lg:px-8">
+        <div className="sticky top-0 z-40 flex items-center h-16 px-4 border-b shadow-xl shrink-0 gap-x-4 border-white/10 bg-slate-900/80 backdrop-blur-md sm:gap-x-6 sm:px-6 lg:px-8">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="lg:hidden text-blue-200 hover:text-white hover:bg-white/10" onClick={() => setSidebarOpen(true)}>
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="sm" className="text-blue-200 lg:hidden hover:text-white hover:bg-white/10" onClick={() => setSidebarOpen(true)}>
+                <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
           </Sheet>
 
-          <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+          <div className="flex self-stretch flex-1 gap-x-4 lg:gap-x-6">
             <div className="flex flex-1"></div>
             <div className="flex items-center gap-x-4 lg:gap-x-6">
               <Button variant="ghost" size="sm" className="text-blue-200 hover:text-white hover:bg-white/10">
-                <Bell className="h-5 w-5" />
+                <Bell className="w-5 h-5" />
               </Button>
 
               <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-white/20" />
@@ -82,7 +88,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                   <span className="text-blue-200">Administrator</span>
                 </div>
                 <Button variant="ghost" size="sm" onClick={logout} className="text-blue-200 hover:text-white hover:bg-white/10">
-                  <LogOut className="h-4 w-4" />
+                  <LogOut className="w-4 h-4" />
                 </Button>
               </div>
             </div>
@@ -100,13 +106,13 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
 function SidebarContent({ pathname }: { pathname: string }) {
   return (
-    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-900/95 backdrop-blur-md px-6 pb-2 border-r border-white/10">
-      <div className="flex h-16 shrink-0 items-center">
-        <Building2 className="h-8 w-8 text-blue-400" />
+    <div className="flex flex-col px-6 pb-2 overflow-y-auto border-r grow gap-y-5 bg-slate-900/95 backdrop-blur-md border-white/10">
+      <div className="flex items-center h-16 shrink-0">
+        <Building2 className="w-8 h-8 text-blue-400" />
         <span className="ml-2 text-xl font-bold text-white">HostelHub</span>
       </div>
-      <nav className="flex flex-1 flex-col">
-        <ul role="list" className="flex flex-1 flex-col gap-y-7">
+      <nav className="flex flex-col flex-1">
+        <ul role="list" className="flex flex-col flex-1 gap-y-7">
           <li>
             <ul role="list" className="-mx-2 space-y-1">
               {navigation.map((item) => (
@@ -120,7 +126,7 @@ function SidebarContent({ pathname }: { pathname: string }) {
                       "group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold transition-all duration-300",
                     )}
                   >
-                    <item.icon className="h-5 w-5 shrink-0" />
+                    <item.icon className="w-5 h-5 shrink-0" />
                     {item.name}
                   </Link>
                 </li>

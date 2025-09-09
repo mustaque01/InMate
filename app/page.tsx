@@ -52,23 +52,58 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="flex flex-col items-center justify-center gap-6 mb-16 sm:flex-row">
-            <Link
-              href="/auth/admin"
-              className="relative flex items-center px-8 py-4 space-x-3 text-lg font-semibold text-white transition-all duration-300 transform shadow-2xl group bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl hover:shadow-blue-500/30 hover:scale-105"
-            >
-              <Shield className="w-6 h-6 transition-transform group-hover:rotate-12" />
-              <span>Admin Portal</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/auth/student"
-              className="relative flex items-center px-8 py-4 space-x-3 text-lg font-semibold text-white transition-all duration-300 transform border group bg-white/10 backdrop-blur-sm rounded-2xl border-white/20 hover:bg-white/20 hover:scale-105"
-            >
-              <Users className="w-6 h-6 transition-transform group-hover:scale-110" />
-              <span>Student Portal</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Link>
+          <div className="flex flex-col items-center justify-center gap-8 mb-16 sm:flex-row">
+            {/* Admin Portal Box */}
+            <div className="relative p-8 transition-all duration-300 transform group rounded-3xl hover:scale-105 w-80">
+              <div className="text-center">
+                <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-2xl">
+                  <Shield className="w-8 h-8 text-blue-400" />
+                </div>
+                <h3 className="mb-2 text-2xl font-bold text-white">Admin Portal</h3>
+                <p className="mb-6 text-sm text-blue-200">Management & Administration</p>
+                <div className="space-y-4">
+                  <Link
+                    href="/auth/admin"
+                    className="flex items-center justify-center w-full px-6 py-4 text-lg font-semibold text-white transition-all duration-300 transform bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl hover:from-blue-600 hover:to-blue-700 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
+                  >
+                    <Shield className="w-5 h-5 mr-2" />
+                    Admin Login
+                  </Link>
+                  <div className="text-sm text-blue-300">
+                    New to admin portal?{" "}
+                    <Link href="/auth/admin?tab=signup" className="font-semibold text-blue-400 underline hover:text-blue-300">
+                      Create Account
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Student Portal Box */}
+            <div className="relative p-8 transition-all duration-300 transform group rounded-3xl hover:scale-105 w-80">
+              <div className="text-center">
+                <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-green-500/20 rounded-2xl">
+                  <Users className="w-8 h-8 text-green-400" />
+                </div>
+                <h3 className="mb-2 text-2xl font-bold text-white">Student Portal</h3>
+                <p className="mb-6 text-sm text-green-200">Student Services & Dashboard</p>
+                <div className="space-y-4">
+                  <Link
+                    href="/auth/student"
+                    className="flex items-center justify-center w-full px-6 py-4 text-lg font-semibold text-white transition-all duration-300 transform bg-gradient-to-r from-green-500 to-green-600 rounded-xl hover:from-green-600 hover:to-green-700 hover:shadow-lg hover:shadow-green-500/30 hover:scale-105"
+                  >
+                    <Users className="w-5 h-5 mr-2" />
+                    Student Login
+                  </Link>
+                  <div className="text-sm text-green-300">
+                    New student?{" "}
+                    <Link href="/auth/student?tab=signup" className="font-semibold text-green-400 underline hover:text-green-300">
+                      Sign Up Here
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Feature Highlights */}

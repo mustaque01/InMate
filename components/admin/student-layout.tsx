@@ -6,7 +6,21 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useAuth } from "@/contexts/auth-context"
-import { Home, CreditCard, FileText, User, LogOut, Menu, Bell, Building2 } from "lucide-react"
+import { 
+  Home, 
+  CreditCard, 
+  FileText, 
+  User, 
+  LogOut, 
+  Menu, 
+  Bell, 
+  Building2,
+  MessageSquare,
+  Calendar,
+  Star,
+  Users,
+  CalendarDays
+} from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -15,6 +29,11 @@ const navigation = [
   { name: "Dashboard", href: "/student/dashboard", icon: Home },
   { name: "Room Details", href: "/student/room", icon: Building2 },
   { name: "Rent Status", href: "/student/rent", icon: CreditCard },
+  { name: "Complaints", href: "/student/complaints", icon: MessageSquare },
+  { name: "Leave Applications", href: "/student/leave", icon: Calendar },
+  { name: "Feedback", href: "/student/feedback", icon: Star },
+  { name: "Roommate Finder", href: "/student/roommate", icon: Users },
+  { name: "Events", href: "/student/events", icon: CalendarDays },
   { name: "Notices", href: "/student/notices", icon: FileText },
   { name: "Profile", href: "/student/profile", icon: User },
 ]

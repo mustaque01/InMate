@@ -122,10 +122,6 @@ export function AuthForm({ userType }: AuthFormProps) {
             <CardDescription className="text-lg leading-relaxed text-blue-200">
               Secure access to your {userType} dashboard
             </CardDescription>
-            <div className="inline-flex items-center px-4 py-2 mt-4 text-sm font-medium text-blue-200 border rounded-full bg-blue-500/20 backdrop-blur-sm border-blue-400/30">
-              <div className="w-2 h-2 mr-2 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 animate-pulse"></div>
-              Enterprise Security
-            </div>
           </CardHeader>
           
           <CardContent className="px-10 pb-10">

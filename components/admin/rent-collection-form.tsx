@@ -18,32 +18,7 @@ import { CalendarIcon, Users, DollarSign, Receipt, Download } from "lucide-react
 import { useRouter } from "next/navigation"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
-
-// Mock data for students with pending rent
-const mockPendingStudents = [
-  {
-    id: 1,
-    name: "Priya Patel",
-    email: "priya.patel@email.com",
-    photo: "/diverse-female-student.png",
-    room: "B-205",
-    monthlyRent: 8500,
-    dueDate: "2024-12-01",
-    daysOverdue: 15,
-    lateFee: 500,
-  },
-  {
-    id: 2,
-    name: "Vikash Yadav",
-    email: "vikash.yadav@email.com",
-    photo: "/male-student-studying.png",
-    room: "D-301",
-    monthlyRent: 8500,
-    dueDate: "2024-12-01",
-    daysOverdue: 8,
-    lateFee: 200,
-  },
-]
+import { mockPendingStudents } from "@/lib/mock-data"
 
 export function RentCollectionForm() {
   const router = useRouter()

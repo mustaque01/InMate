@@ -69,11 +69,11 @@ export function PaymentAnalyticsOverview() {
     return (
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {[...Array(4)].map((_, i) => (
-          <Card key={i} className="bg-white/10 backdrop-blur-md border border-white/20">
+          <Card key={i} className="border bg-white/10 backdrop-blur-md border-white/20">
             <CardContent className="p-6">
-              <div className="animate-pulse space-y-3">
-                <div className="h-4 bg-white/20 rounded w-3/4"></div>
-                <div className="h-8 bg-white/20 rounded w-1/2"></div>
+              <div className="space-y-3 animate-pulse">
+                <div className="w-3/4 h-4 rounded bg-white/20"></div>
+                <div className="w-1/2 h-8 rounded bg-white/20"></div>
               </div>
             </CardContent>
           </Card>
@@ -90,11 +90,11 @@ export function PaymentAnalyticsOverview() {
   return (
     <div className="space-y-6">
       {/* Controls */}
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-white">Payment Analytics</h2>
         <div className="flex gap-4">
           <Select value={period} onValueChange={setPeriod}>
-            <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white">
+            <SelectTrigger className="w-32 text-white bg-white/10 border-white/20">
               <SelectValue placeholder="Period" />
             </SelectTrigger>
             <SelectContent>
@@ -106,7 +106,7 @@ export function PaymentAnalyticsOverview() {
           <Button 
             onClick={fetchAnalytics}
             variant="outline"
-            className="border-blue-300 text-blue-200 hover:bg-blue-500/20"
+            className="text-blue-200 border-blue-300 hover:bg-blue-500/20"
           >
             Refresh
           </Button>
@@ -115,10 +115,10 @@ export function PaymentAnalyticsOverview() {
 
       {/* Summary Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="border bg-white/10 backdrop-blur-md border-white/20">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium text-blue-200">Total Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-green-400" />
+            <DollarSign className="w-4 h-4 text-green-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-white">{formatCurrency(analytics.totalRevenue.total)}</div>
@@ -129,10 +129,10 @@ export function PaymentAnalyticsOverview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="border bg-white/10 backdrop-blur-md border-white/20">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium text-blue-200">Outstanding</CardTitle>
-            <Clock className="h-4 w-4 text-yellow-400" />
+            <Clock className="w-4 h-4 text-yellow-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-white">{formatCurrency(analytics.outstandingPayments.amount)}</div>
@@ -142,10 +142,10 @@ export function PaymentAnalyticsOverview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="border bg-white/10 backdrop-blur-md border-white/20">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium text-blue-200">Late Payments</CardTitle>
-            <AlertTriangle className="h-4 w-4 text-red-400" />
+            <AlertTriangle className="w-4 h-4 text-red-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-white">{analytics.latePayments.count}</div>
@@ -155,10 +155,10 @@ export function PaymentAnalyticsOverview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="border bg-white/10 backdrop-blur-md border-white/20">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium text-blue-200">Payment Types</CardTitle>
-            <Calendar className="h-4 w-4 text-blue-400" />
+            <Calendar className="w-4 h-4 text-blue-400" />
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -174,14 +174,14 @@ export function PaymentAnalyticsOverview() {
       </div>
 
       {/* Monthly Trend */}
-      <Card className="bg-white/10 backdrop-blur-md border border-white/20">
+      <Card className="border bg-white/10 backdrop-blur-md border-white/20">
         <CardHeader>
           <CardTitle className="text-white">Monthly Trend</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {analytics.monthlyTrend.map((month) => (
-              <div key={month.month} className="flex items-center justify-between p-4 border border-white/20 rounded-lg bg-white/5">
+              <div key={month.month} className="flex items-center justify-between p-4 border rounded-lg border-white/20 bg-white/5">
                 <div>
                   <h4 className="font-medium text-white">{month.month}</h4>
                   <p className="text-sm text-blue-300">{month.count} payments</p>
@@ -205,19 +205,19 @@ export function PaymentAnalyticsOverview() {
 
       {/* Recent Late Payments */}
       {analytics.latePayments.details.length > 0 && (
-        <Card className="bg-white/10 backdrop-blur-md border border-white/20">
+        <Card className="border bg-white/10 backdrop-blur-md border-white/20">
           <CardHeader>
             <CardTitle className="text-white">Recent Late Payments</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {analytics.latePayments.details.slice(0, 10).map((payment, index) => (
-                <div key={index} className="flex items-center justify-between p-3 border border-white/20 rounded-lg bg-white/5">
+                <div key={index} className="flex items-center justify-between p-3 border rounded-lg border-white/20 bg-white/5">
                   <div>
                     <h4 className="font-medium text-white">{payment.user.name}</h4>
                     <p className="text-sm text-blue-300">ID: {payment.user.studentId}</p>
                   </div>
-                  <Badge variant="destructive" className="bg-red-500/20 text-red-300 border-red-400">
+                  <Badge variant="destructive" className="text-red-300 border-red-400 bg-red-500/20">
                     {formatCurrency(payment.lateFee)} late fee
                   </Badge>
                 </div>

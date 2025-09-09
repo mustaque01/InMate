@@ -9,61 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search, MoreHorizontal, Edit, Eye, LogOut, Calendar, DollarSign, Building2 } from "lucide-react"
-
-// Mock booking data
-const mockBookings = [
-  {
-    id: 1,
-    student: {
-      name: "Rahul Sharma",
-      email: "rahul.sharma@email.com",
-      photo: "/diverse-students.png",
-    },
-    room: "A-101",
-    bed: "Bed 1",
-    checkIn: "2024-01-15",
-    checkOut: null,
-    monthlyRent: 8500,
-    securityDeposit: 10000,
-    nextRentDue: "2025-01-01",
-    status: "active",
-    totalPaid: 18500,
-  },
-  {
-    id: 2,
-    student: {
-      name: "Priya Patel",
-      email: "priya.patel@email.com",
-      photo: "/diverse-female-student.png",
-    },
-    room: "B-205",
-    bed: "Bed 2",
-    checkIn: "2024-02-20",
-    checkOut: null,
-    monthlyRent: 8500,
-    securityDeposit: 10000,
-    nextRentDue: "2025-01-01",
-    status: "active",
-    totalPaid: 18500,
-  },
-  {
-    id: 3,
-    student: {
-      name: "Amit Kumar",
-      email: "amit.kumar@email.com",
-      photo: "/male-student-studying.png",
-    },
-    room: "C-102",
-    bed: "Bed 1",
-    checkIn: "2024-03-10",
-    checkOut: "2024-12-15",
-    monthlyRent: 8500,
-    securityDeposit: 10000,
-    nextRentDue: null,
-    status: "checked-out",
-    totalPaid: 18500,
-  },
-]
+import { mockBookings } from "@/lib/mock-data"
 
 export function BookingList() {
   const [searchTerm, setSearchTerm] = useState("")

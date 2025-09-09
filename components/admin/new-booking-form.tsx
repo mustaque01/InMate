@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 
 import { useState, useEffect } from "react"
@@ -17,37 +15,7 @@ import { CalendarIcon, Building2, Users, DollarSign } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
-
-// Mock data
-const mockStudents = [
-  {
-    id: 1,
-    name: "Anita Singh",
-    email: "anita.singh@email.com",
-    phone: "+91 9876543214",
-    photo: "/diverse-female-student.png",
-  },
-  {
-    id: 2,
-    name: "Vikash Yadav",
-    email: "vikash.yadav@email.com",
-    phone: "+91 9876543215",
-    photo: "/male-student-studying.png",
-  },
-  {
-    id: 3,
-    name: "Deepak Gupta",
-    email: "deepak.gupta@email.com",
-    phone: "+91 9876543216",
-    photo: "/diverse-students.png",
-  },
-]
-
-const mockAvailableRooms = [
-  { id: 1, number: "A-103", floor: 1, type: "double", rent: 8500, availableBeds: ["Bed 1", "Bed 2"] },
-  { id: 2, number: "B-202", floor: 2, type: "single", rent: 12000, availableBeds: ["Bed 1"] },
-  { id: 3, number: "C-301", floor: 3, type: "double", rent: 8500, availableBeds: ["Bed 1"] },
-]
+import { mockAvailableStudents, mockAvailableRooms } from "@/lib/mock-data"
 
 export function NewBookingForm() {
   const router = useRouter()
@@ -107,7 +75,7 @@ export function NewBookingForm() {
               <Select
                 required
                 onValueChange={(value) => {
-                  const student = mockStudents.find((s) => s.id.toString() === value)
+                  const student = mockAvailableStudents.find((s) => s.id.toString() === value)
                   setSelectedStudent(student)
                 }}
               >
@@ -115,7 +83,7 @@ export function NewBookingForm() {
                   <SelectValue placeholder="Select a student" />
                 </SelectTrigger>
                 <SelectContent className="bg-slate-800 border-white/20">
-                  {mockStudents.map((student) => (
+                  {mockAvailableStudents.map((student) => (
                     <SelectItem key={student.id} value={student.id.toString()} className="text-white hover:bg-white/10">
                       <div className="flex items-center gap-2">
                         <Avatar className="h-6 w-6">
