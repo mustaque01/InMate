@@ -1,0 +1,9 @@
+react-version/
+Backend/
+prisma/dev.db
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.DS_Store
