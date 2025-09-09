@@ -6,6 +6,8 @@
 
 **A modern, full-stack hostel management solution built with Next.js 15**
 
+🚀 **[LIVE DEMO - Try InMate Now!](https://in-mate-qksz9o6y1-md-mustaks-projects-4435f18d.vercel.app)** 🚀
+
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_App-blue?style=for-the-badge)](https://in-mate-qksz9o6y1-md-mustaks-projects-4435f18d.vercel.app)
 [![GitHub Stars](https://img.shields.io/github/stars/mustaque01/InMate?style=for-the-badge&logo=github)](https://github.com/mustaque01/InMate)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
@@ -63,6 +65,13 @@
 ## 🎯 Overview
 
 **InMate** is a comprehensive hostel management system designed to streamline operations for educational institutions and hostels. It provides separate dashboards for administrators and students with complete room booking, payment tracking, and notice management functionality.
+
+### 🔥 **Try Live Demo Now!**
+**🌐 Production App:** [https://in-mate-qksz9o6y1-md-mustaks-projects-4435f18d.vercel.app](https://in-mate-qksz9o6y1-md-mustaks-projects-4435f18d.vercel.app)
+
+**Quick Login:**
+- **Admin:** `admin@hostel.com` / `admin123`
+- **Student:** `john.doe@student.com` / `student123`
 
 ### 🌟 **Key Highlights**
 - **🔐 Dual Role System** - Separate Admin & Student portals
@@ -235,7 +244,7 @@ Users (Admin/Student accounts with profile info)
    ```
 
 6. **Open your browser**
-   Visit `http://localhost:3000` and login with test accounts above!
+   Visit `http://localhost:3000` for development or check out the live demo: [https://in-mate-qksz9o6y1-md-mustaks-projects-4435f18d.vercel.app](https://in-mate-qksz9o6y1-md-mustaks-projects-4435f18d.vercel.app)
 
 ## 🏗️ **Architecture & Database**
 
