@@ -1,3 +1,4 @@
+# Ignore unnecessary files
 react-version/
 Backend/
 prisma/dev.db
@@ -7,3 +8,4 @@ prisma/dev.db
 .env.test.local
 .env.production.local
 .DS_Store
+node_modules/
