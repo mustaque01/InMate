@@ -680,6 +680,5 @@ Special thanks to these amazing technologies and communities:
 [![GitHub forks](https://img.shields.io/github/forks/mustaque01/InMate?style=social)](https://github.com/mustaque01/InMate/network/members)
 [![GitHub watchers](https://img.shields.io/github/watchers/mustaque01/InMate?style=social)](https://github.com/mustaque01/InMate/watchers)
 
-**Made with ❤️ by [MD MUSTAK](https://github.com/mustaque01)**
 
 </div>
